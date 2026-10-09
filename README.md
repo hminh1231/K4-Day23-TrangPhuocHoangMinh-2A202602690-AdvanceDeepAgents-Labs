@@ -13,6 +13,7 @@ cp .env.example .env        # điền LAB_MODEL + khóa LLM, EXA_API_KEY, và DA
 python tools.py             # thử nhanh 5 công cụ nguồn dữ liệu
 python research.py "survey about world model"
 python self_check.py        # kiểm tra đủ 5 báo cáo, trích dẫn và không lộ khóa
+pip install pytest && python -m pytest -q tests   # test with_retry, slugify, check_citations, save_outputs (không gọi mạng)
 ```
 
 Với `SANDBOX=docker`, Docker Desktop phải đang chạy. Mỗi chủ đề mất khoảng 8-35 phút.

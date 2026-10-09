@@ -1,0 +1,170 @@
+[
+  {
+    "n": 1,
+    "id": "https://ar5iv.labs.arxiv.org/html/2601.15158",
+    "url": "https://ar5iv.labs.arxiv.org/html/2601.15158",
+    "title": "Outcome-Based RL Provably Leads Transformers to Reason, but Only With the Right Data",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "https://arxiv.org/html/2504.12501v2",
+    "url": "https://arxiv.org/html/2504.12501v2",
+    "title": "Reinforcement Learning from Human Feedback - arXiv",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "https://ar5iv.labs.arxiv.org/html/2311.05821",
+    "url": "https://ar5iv.labs.arxiv.org/html/2311.05821",
+    "title": "Let's Reinforce Step by Step",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 4,
+    "id": "2504.00891",
+    "url": "https://huggingface.co/papers/2504.00891",
+    "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+    "date": "2025-04-01",
+    "source": "hf-search"
+  },
+  {
+    "n": 5,
+    "id": "2410.01679",
+    "url": "https://huggingface.co/papers/2410.01679",
+    "title": "VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment",
+    "date": "2024-10-02",
+    "source": "hf-search"
+  },
+  {
+    "n": 6,
+    "id": "https://arxiv.org/html/2506.01937v2",
+    "url": "https://arxiv.org/html/2506.01937v2",
+    "title": "RewardBench 2: Advancing Reward Model Evaluation",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 7,
+    "id": "2604.08865",
+    "url": "https://huggingface.co/papers/2604.08865",
+    "title": "SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks",
+    "date": "2026-04-10",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2504.11343",
+    "url": "https://huggingface.co/papers/2504.11343",
+    "title": "A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce",
+    "date": "2025-04-15",
+    "source": "hf-search"
+  },
+  {
+    "n": 9,
+    "id": "2403.04642",
+    "url": "https://arxiv.org/html/2403.04642v1",
+    "title": "Teaching Large Language Models to Reason with Reinforcement Learning",
+    "date": "2024-03-07",
+    "source": "arxiv"
+  },
+  {
+    "n": 10,
+    "id": "https://exa.ai/library/publication/ygy742972br",
+    "url": "https://exa.ai/library/publication/ygy742972br",
+    "title": "DialCoT Meets PPO: Decomposing and Exploring Reasoning Paths in Smaller Language Models",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 11,
+    "id": "2505.16265",
+    "url": "https://huggingface.co/papers/2505.16265",
+    "title": "Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models",
+    "date": "2025-05-22",
+    "source": "hf-search"
+  },
+  {
+    "n": 12,
+    "id": "2602.04649",
+    "url": "https://huggingface.co/papers/2602.04649",
+    "title": "Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models",
+    "date": "2026-02-04",
+    "source": "hf-search"
+  },
+  {
+    "n": 13,
+    "id": "2610.06100",
+    "url": "https://huggingface.co/papers/2610.06100",
+    "title": "From Traces to Agentic Worlds: Agentic Language World Models for Interactive Environment Simulation",
+    "date": "2026-10-05",
+    "source": "hf-daily"
+  },
+  {
+    "n": 14,
+    "id": "2505.14140v3",
+    "url": "https://arxiv.org/abs/2505.14140v3",
+    "title": "RL of Thoughts: Navigating LLM Reasoning with Inference-time Reinforcement Learning",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 15,
+    "id": "2404.10719",
+    "url": "https://huggingface.co/papers/2404.10719",
+    "title": "Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study",
+    "date": "2024-04-16",
+    "source": "hf-search"
+  },
+  {
+    "n": 16,
+    "id": "2405.14751",
+    "url": "https://huggingface.co/papers/2405.14751",
+    "title": "AGILE: A Novel Reinforcement Learning Framework of LLM Agents",
+    "date": "2024-05-23",
+    "source": "hf-search"
+  },
+  {
+    "n": 17,
+    "id": "2506.18896",
+    "url": "https://huggingface.co/papers/2506.18896",
+    "title": "ReasonFlux-PRM: Trajectory-Aware PRMs for Long Chain-of-Thought Reasoning in LLMs",
+    "date": "2025-06-23",
+    "source": "hf-search"
+  },
+  {
+    "n": 18,
+    "id": "https://arxiv.org/html/2511.13016v1",
+    "url": "https://arxiv.org/html/2511.13016v1",
+    "title": "A Reward Structure Showdown in Reasoning Models Training",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 19,
+    "id": "https://d6108366.hf-mirror.com/papers/2312.08935",
+    "url": "https://d6108366.hf-mirror.com/papers/2312.08935",
+    "title": "MATH-SHEPHERD (mirror)",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 20,
+    "id": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf",
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf",
+    "title": "OPPO: RLHF acceleration (ICLR 2026)",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 21,
+    "id": "2610.06406",
+    "url": "https://huggingface.co/papers/2610.06406",
+    "title": "What Did the Agent Actually Do? Evidence-Grounded Oversight for Long-Horizon Agents",
+    "date": "2026-10-05",
+    "source": "hf-daily"
+  }
+]

@@ -1,0 +1,186 @@
+[
+  {
+    "n": 1,
+    "id": "https://link.springer.com/article/10.1007/s10462-025-11471-9",
+    "url": "https://link.springer.com/article/10.1007/s10462-025-11471-9",
+    "title": "From language to action: a review of large language models as autonomous agents and tool users | Artificial Intelligence Review | Springer Nature Link",
+    "date": "2026-01-06",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "https://arxiv.org/html/2406.05804v5",
+    "url": "https://arxiv.org/html/2406.05804v5",
+    "title": "A Review of Prominent Paradigms for LLM-Based Agents: Tool Use (Including RAG), Planning, and Feedback Learning",
+    "date": "N/A",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "https://arxiv.org/html/2503.21460",
+    "url": "https://arxiv.org/html/2503.21460",
+    "title": "Large Language Model Agent: A Survey on Methodology, Applications and Challenges",
+    "date": "N/A",
+    "source": "web"
+  },
+  {
+    "n": 4,
+    "id": "https://huggingface.co/papers/2606.20683",
+    "url": "https://huggingface.co/papers/2606.20683",
+    "title": "From Question Answering to Task Completion: A Survey on Agent System and Harness Design",
+    "date": "2026-06-14",
+    "source": "hf-search"
+  },
+  {
+    "n": 5,
+    "id": "https://www.langchain.com/blog/planning-agents",
+    "url": "https://www.langchain.com/blog/planning-agents",
+    "title": "Plan-and-Execute Agents - LangChain",
+    "date": "2024-02-13",
+    "source": "web"
+  },
+  {
+    "n": 6,
+    "id": "https://ar5iv.labs.arxiv.org/html/2310.13227",
+    "url": "https://ar5iv.labs.arxiv.org/html/2310.13227",
+    "title": "ToolChain∗: Efficient Action Space Navigation in Large Language Models with A∗ Search",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 7,
+    "id": "https://arxiv.org/html/2506.19500",
+    "url": "https://arxiv.org/html/2506.19500",
+    "title": "NaviAgent: Graph‑Driven Bilevel Planning for Scalable Tool Orchestration",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 8,
+    "id": "https://arxiv.org/pdf/2406.03807v4.pdf",
+    "url": "https://arxiv.org/pdf/2406.03807v4.pdf",
+    "title": "Tool-Planner: Task Planning with Clusters across Multiple Tools",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 9,
+    "id": "https://arxiv.org/html/2507.21504v1",
+    "url": "https://arxiv.org/html/2507.21504v1",
+    "title": "Evaluation and Benchmarking of LLM Agents: A Survey - arXiv",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 10,
+    "id": "https://exa.ai/library/publication/1rwb8gwkl59",
+    "url": "https://exa.ai/library/publication/1rwb8gwkl59",
+    "title": "TRAJECT-Bench: A Trajectory-Aware Benchmark for Evaluating Agentic Tool Use",
+    "date": "2025-10-06",
+    "source": "web"
+  },
+  {
+    "n": 11,
+    "id": "https://exa.ai/library/publication/n1tngp5py72",
+    "url": "https://exa.ai/library/publication/n1tngp5py72",
+    "title": "MCP-Bench: Benchmarking Tool-Using LLM Agents with Complex Real-World Tasks via MCP Servers",
+    "date": "2025-08-28",
+    "source": "web"
+  },
+  {
+    "n": 12,
+    "id": "https://www.langchain.com/resources/how-to-evaluate-llms",
+    "url": "https://www.langchain.com/resources/how-to-evaluate-llms",
+    "title": "Evaluating LLMs and Agents: Benchmarks, Evals & Guardrails (LangChain)",
+    "date": "2026-06-23",
+    "source": "web"
+  },
+  {
+    "n": 13,
+    "id": "https://arxiv.org/html/2601.10156",
+    "url": "https://arxiv.org/html/2601.10156",
+    "title": "ToolSafe: Enhancing Tool Invocation Safety of LLM-based agents via Proactive Step-level Guardrail and Feedback",
+    "date": "N/A",
+    "source": "web"
+  },
+  {
+    "n": 14,
+    "id": "https://arxiv.org/pdf/2607.21835.pdf",
+    "url": "https://arxiv.org/pdf/2607.21835.pdf",
+    "title": "ToolGuardian: Declarative Security for AI Agent-Tool Interactions",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 15,
+    "id": "https://arxiv.org/html/2607.25297v1",
+    "url": "https://arxiv.org/html/2607.25297v1",
+    "title": "Hybrid Analysis for Secure MCP Tool Use in LLM Agents (MTGuard)",
+    "date": "2026-07-28",
+    "source": "web"
+  },
+  {
+    "n": 16,
+    "id": "https://developer.nvidia.com/blog/practical-security-guidance-for-sandboxing-agentic-workflows-and-managing-execution-risk/",
+    "url": "https://developer.nvidia.com/blog/practical-security-guidance-for-sandboxing-agentic-workflows-and-managing-execution-risk/",
+    "title": "Practical Security Guidance for Sandboxing Agentic Workflows and Managing Execution Risk (NVIDIA AI Red Team)",
+    "date": "2026-01-30",
+    "source": "web"
+  },
+  {
+    "n": 17,
+    "id": "https://agentpatterns.ai/patterns/agent-design/anthropic-effective-agents-framework",
+    "url": "https://agentpatterns.ai/patterns/agent-design/anthropic-effective-agents-framework",
+    "title": "Anthropic's Effective Agents Framework: A Pattern Map",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 18,
+    "id": "https://www.tdcommons.org/cgi/viewcontent.cgi?article=9446&context=dpubs_series",
+    "url": "https://www.tdcommons.org/cgi/viewcontent.cgi?article=9446&context=dpubs_series",
+    "title": "Tool Selection by Large Language Model (LLM) Agents (TDCommons)",
+    "date": "unknown",
+    "source": "web"
+  },
+  {
+    "n": 19,
+    "id": "2610.09683",
+    "url": "https://huggingface.co/papers/2610.09683",
+    "title": "System Switch: When Should a Fast Decision Model Stop and Think? (hf-daily)",
+    "date": "2026-10-07",
+    "source": "hf-daily"
+  },
+  {
+    "n": 20,
+    "id": "2603.15798",
+    "url": "https://huggingface.co/papers/2603.15798",
+    "title": "CUBE: A Standard for Unifying Agent Benchmarks",
+    "date": "2026-03-16",
+    "source": "hf-search"
+  },
+  {
+    "n": 21,
+    "id": "2607.22368",
+    "url": "https://huggingface.co/papers/2607.22368",
+    "title": "Do Agent Benchmarks Measure Capability? Protocol Validity in the Age of Agentic AI",
+    "date": "2026-07-24",
+    "source": "hf-search"
+  },
+  {
+    "n": 22,
+    "id": "https://rdi.berkeley.edu/blog/maltool/",
+    "url": "https://rdi.berkeley.edu/blog/maltool/",
+    "title": "MalTool: Malicious Tool Attacks on LLM Agents - Berkeley RDI",
+    "date": "2026-03-03",
+    "source": "web"
+  },
+  {
+    "n": 23,
+    "id": "2608.10669",
+    "url": "https://huggingface.co/papers/2608.10669",
+    "title": "REDAgentBench: Executable Red Teaming and Faithful Measurement of LLM Agent Systems",
+    "date": "2026-08-11",
+    "source": "hf-search"
+  }
+]

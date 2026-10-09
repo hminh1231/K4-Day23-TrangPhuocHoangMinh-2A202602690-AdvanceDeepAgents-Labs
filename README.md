@@ -1,5 +1,42 @@
 # Deep Research Agent (Deep Agents + Sandbox)
 
+## Bài nộp: cách chạy và cách đọc kết quả
+
+Sinh viên: Trang Phước Hoàng Minh - 2A202602690. Mô hình: `openai:gpt-5-mini`; sandbox: Docker cục bộ (`SANDBOX=docker`).
+
+**Cài đặt và chạy**
+
+```bash
+python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env        # điền LAB_MODEL + khóa LLM, EXA_API_KEY, và DAYTONA_API_KEY hoặc SANDBOX=docker
+python tools.py             # thử nhanh 5 công cụ nguồn dữ liệu
+python research.py "survey about world model"
+python self_check.py        # kiểm tra đủ 5 báo cáo, trích dẫn và không lộ khóa
+```
+
+Với `SANDBOX=docker`, Docker Desktop phải đang chạy. Mỗi chủ đề mất khoảng 20-35 phút.
+
+**Cách đọc `reports/`**: mỗi chủ đề có ba tệp cùng tên `<slug>`:
+
+- `<slug>.md`: báo cáo survey. Mỗi khẳng định có trích dẫn `[n]`, và `## References` có đúng một dòng cho mỗi nguồn.
+- `<slug>.sources.json`: danh sách nguồn `{n, id, url, title, date, source}`. `n` khớp với `[n]` trong báo cáo, còn `source` là công cụ đã trả về nguồn (`arxiv`, `hf-daily`, `hf-search`, `web`).
+- `<slug>.meta.json`: số liệu của lần chạy, gồm thời gian, số lần gọi subagent (`subagent_calls`), số lần gọi từng công cụ, token của lead, số nguồn và các họ nguồn.
+
+Kiểm tra lại một báo cáo: `python check_citations.py reports/<slug>.md reports/<slug>.sources.json` (in `OK` nếu hợp lệ).
+
+**Kết quả 5 chủ đề** (cả 5 đều được `check_citations.py` in `OK`):
+
+| Chủ đề | Nguồn | Gọi subagent | Họ nguồn | Thời gian |
+|---|---|---|---|---|
+| survey about world model | 17 | 7 | hf-daily, hf-search, web | ~22 phút |
+| survey about reinforcement learning for LLM reasoning | 21 | 5 | arxiv, hf-daily, hf-search, web | ~22 phút |
+| survey about LLM agents and tool use | 23 | 5 | hf-daily, hf-search, web | ~27 phút |
+| survey about video and multimodal generation | 22 | 6 | hf-daily, hf-search, web | ~33 phút |
+| survey about efficient inference and small language models | 19 | 4 | arxiv, hf-search, web | ~22 phút |
+
+---
+
 Lab dựng một **hệ thống deep research đa tác tử**: người dùng chỉ cần nhập một chủ đề (ví dụ `survey about world model`), hệ thống tự lập kế hoạch, giao việc cho nhiều subagent, tìm tài liệu trên arXiv, Hugging Face và web, rồi viết một **báo cáo có trích dẫn**.
 
 Hình thức: **bài thực hành cá nhân**. Ngôn ngữ lập trình: Python 3.11 trở lên.

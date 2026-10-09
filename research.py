@@ -3,18 +3,18 @@
 Usage:  python research.py "survey about world model"
 Result: reports/<slug>.md   reports/<slug>.sources.json   reports/<slug>.meta.json
 """
-import json  # noqa: F401
-import os  # noqa: F401
-import re  # noqa: F401
+import json
+import os
+import re
 import sys
-import time  # noqa: F401
+import time
 import unicodedata
-from collections import Counter  # noqa: F401
+from collections import Counter
 from pathlib import Path
 
-from agents import FINALIZER_PATH, REPORT_PATH, SOURCES_PATH, VALIDATOR_PATH, WORKDIR, build_lead_agent  # noqa: F401
-from model import make_model  # noqa: F401
-from sandbox import download, open_sandbox, upload  # noqa: F401
+from agents import FINALIZER_PATH, REPORT_PATH, SOURCES_PATH, VALIDATOR_PATH, WORKDIR, build_lead_agent
+from model import make_model
+from sandbox import download, open_sandbox, upload
 
 ROOT = Path(__file__).parent
 REPORTS = ROOT / "reports"

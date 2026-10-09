@@ -8,14 +8,14 @@ Rules for every tool:
   * the docstring is the tool description the LLM reads: keep it precise (what it does, what it returns, when to use it).
 Try your tools without any agent:   python tools.py
 """
-import json  # noqa: F401
-import os  # noqa: F401
+import json
+import os
 import random
 import re
-import time  # noqa: F401
-import xml.etree.ElementTree  # noqa: F401  (arXiv answers with Atom XML)
+import time
+import xml.etree.ElementTree  # (arXiv answers with Atom XML)
 
-import httpx  # noqa: F401
+import httpx
 from langchain_core.tools import tool
 
 # ---- constants (given) ----

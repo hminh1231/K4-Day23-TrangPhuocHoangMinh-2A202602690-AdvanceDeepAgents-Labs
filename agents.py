@@ -2,10 +2,10 @@
 
 Docs: https://docs.langchain.com/oss/python/deepagents/overview  (subagents: `subagents=[{...}]` of create_deep_agent)
 """
-from deepagents import create_deep_agent  # noqa: F401
-from langchain.agents.middleware import ModelCallLimitMiddleware, TodoListMiddleware, ToolCallLimitMiddleware  # noqa: F401
+from deepagents import create_deep_agent
+from langchain.agents.middleware import ModelCallLimitMiddleware, TodoListMiddleware, ToolCallLimitMiddleware
 
-from tools import SOURCE_TOOLS, web_fetch  # noqa: F401
+from tools import SOURCE_TOOLS, web_fetch
 
 # ---- workspace contract (given; the whole team and research.py rely on these exact paths) ----
 WORKDIR = "/tmp/work"

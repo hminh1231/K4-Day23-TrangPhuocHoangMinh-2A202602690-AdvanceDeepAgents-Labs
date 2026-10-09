@@ -1,64 +1,86 @@
 # Reinforcement learning for LLM reasoning: a survey
-
 ## TL;DR
-
-- Reinforcement learning (RL) has been shown to elicit chain-of-thought and stepwise reasoning under outcome-based and process-based reward schemes, but success depends critically on data distribution and reward design [1][2][3].
-- Process Reward Models (PRMs) that score intermediate steps improve reranking and GSM8K accuracy, while Outcome Reward Models (ORMs) typically boost final-answer metrics on harder benchmarks like MATH; hybrid or trajectory-aware rewards often outperform either alone [4][5][6].
-- Algorithm choice and credit assignment matter: specialized methods (VinePPO, Sequence-Level PPO, Reinforce-Rej, Expert Iteration) and improved credit assignment significantly improve training stability and long-horizon reasoning performance [5][7][8].
-- Empirical gains are typically modest but task-dependent: reported improvements range from a few percentage points to ~12.8 pp in select experiments; sample-efficiency and compute remain major constraints [9][10][11].
-- Open problems include reward hacking/deceptive alignment for generative RMs, scaling PRMs efficiently, and rigorous benchmarks for long-horizon agentic reasoning [12][11][13].
+- Reinforcement learning for LLM reasoning is primarily implemented as Reinforcement Learning from Human Feedback (RLHF): collect preference data, train a reward model, and fine-tune the LM policy (commonly with PPO) with a KL penalty to stay near the supervised initialization [1][2][3][4].
+- RL variants that provide process- or stepwise supervision ("process supervision", reasoning reward models, learned verifiers) can improve multi-step reasoning beyond outcome-only rewards, often with substantial gains on mathematical benchmarks [5][6][7].
+- Practical methods for reasoning use PPO-based pipelines but introduce algorithmic fixes (off-policy corrections, advantage models, segment-level updates, direct Q optimization) and adaptive strategies (AdaCoT, RLAIF) to handle long horizons and sample-efficiency [8][9][10][11][12].
+- RL applied to reasoning faces systemic failure modes: reward hacking, evaluator gaming, catastrophic Goodhart, and instability in training dynamics; proposed mitigations include bounded/pessimistic rewards, disentangled reward heads, and advantage-based stabilizers [13][14][15][16].
 
 ## Background
+Reinforcement learning has been adopted to improve and align large language models (LLMs) by optimizing them against learned proxies of human preferences rather than only supervised objectives. The RL-from-preferences pipeline—collecting preference data, training a reward model, then optimizing a policy with policy-gradient methods while penalizing divergence from the supervised initialization—was introduced in the RL from human preferences literature and adapted to language tasks by work such as the OpenAI summarization study and Hugging Face tutorials [1][2][3][4]. The standard engineering pattern reported in these accounts uses a reward model trained to predict human comparisons; Hugging Face documents PPO with a KL penalty as a common engineering choice, while OpenAI describes fine-tuning with reinforcement learning using a learned reward model [4][3].
 
-Reinforcement learning for LLM reasoning applies RL machinery — policies, rewards, environments — to improve models' multi-step problem solving and chain-of-thought generation. The RLHF pipeline (instruction-tuning, preference collection, reward modeling, RL optimization) is the standard training-time approach to align LLMs to human preferences and reasoning behavior [2]. RL can be applied at inference time as a navigator over reasoning actions (RLoT) or at training time with policy-gradient methods adapted to sequence generation [14][8].
+## Methods and variants
+Three classes of methodological approaches have emerged for applying RL to reasoning tasks:
 
-Foundational theoretical work shows that outcome-based policy gradient can cause Transformers to develop interpretable iterative algorithms that implement reasoning strategies, but this emergence depends on having sufficient mass of "simple examples" in the training distribution to bootstrap longer chains [1].
+- Outcome supervision (final-answer reward) vs process supervision (stepwise reward). OpenAI's process-supervision experiments show that rewarding correct intermediate steps rather than only the final answer yields better performance on mathematical problems and that the performance gap grows when more solutions per problem are considered [5][7]. Reasoning-specific reward models (e.g., RM-R1 / REASRMS) recast reward modeling as a generative, chain-of-rubrics evaluation that can produce more interpretable judgments for chain-of-thought comparisons [6].
 
-## Architectures and methods
+- Algorithmic families. PPO-based on-policy policy-gradient remains the common baseline for RLHF-style fine-tuning, deployed with KL constraints to maintain proximity to the pretrained policy [4][8]. Recent work extends or replaces vanilla PPO with methods addressing stability and credit assignment in long-horizon text generation: asynchronous off-policy corrections for advantage staleness (COPC), on-policy distillation to transfer compositional skills, and direct Q-function optimization for multi-step reasoning [9][17][18][12]. Practical reports also explore alternatives such as A2C when human-label collection is a bottleneck (RLAIF) and PPO-max variants for improved stability [11][10][8].
 
-There are three families of methods for applying RL to LLM reasoning. First, standard RLHF-style training optimizes a policy against a reward model with policy gradients, often implemented with PPO or its variants; RLHF remains the dominant production approach to align LLM behavior [2][15]. Second, inference-time navigators (RL-of-Thought, RLoT) learn lightweight decision policies that select logical actions during chain-of-thought generation and use PRMs as single-step rewards [14]. Third, specialized credit-assignment and sequence-level methods (VinePPO, SPPO, Reinforce-Rej, Expert Iteration) adapt the RL algorithm to the long-horizon, structured nature of CoT traces by decoupling value functions or improving Monte Carlo credit assignment [5][7][8][9].
+- Adaptive and selective chain-of-thought strategies. Adaptive CoT triggering (AdaCoT) uses RL to decide when to invoke chain-of-thought to save compute while preserving performance, showing that RL can control reasoning verbosity without sacrificing task accuracy [10]. Verification-guided methods train learned verifiers to evaluate candidate chains and feed the verifier signal back to generation, which can both increase trust and provide feedback for policy updates while raising distributional-loop concerns [7].
 
-Comparative studies highlight that PPO is strong in many RLHF settings, but new methods sometimes outperform it on reasoning tasks: VinePPO reports refined credit assignment that beats PPO, Sequence-Level PPO reformulates long-chain reasoning as a contextual bandit to address instability, and Reinforce-Rej trades off simplicity for improved stability and sample efficiency [5][7][8]. Agentic RL frameworks (AGILE) combine memory, tools and expert consultation with PPO training to handle complex conversational or multi-step tasks [16].
+Across these directions, two recurring engineering themes are (1) designing reward signals that capture intermediate reasoning quality and (2) correcting or stabilizing policy updates so that long token-level horizons and stale rollouts do not produce biased advantages [6][9][8].
 
-## Rewards and evaluation
+## Benchmarks and empirical evidence
+Empirical evidence that RL improves reasoning relies on both public benchmarks and internal evaluations described in engineering reports:
 
-Reward design splits into outcome-based rewards (ORMs) that score final answer correctness and process-based rewards (PRMs) that provide step-level feedback on reasoning traces. Early experiments show PRMs can dramatically increase GSM8K accuracy (PRM-Max on GSM8K) while ORMs are more effective on MATH in some studies; aggregation method (max, mean, trajectory-aware) strongly affects results [3][4][6].
+- OpenAI reports training model o1 with reinforcement learning for complex reasoning and shows substantial gains: o1 averaged 74% (11.1/15) with a single sample per problem, 83% (12.5/15) with 64-sample consensus, and 93% (13.9/15) when re-ranking 1000 samples with a learned scoring function [19].
 
-Generative reward models that produce CoT rationales followed by verdicts (Think-RM, GenPRM) provide richer supervision for long-horizon tasks and can reduce data requirements by scoring stepwise reasoning and enabling verification steps [11][4]. Trajectory-aware PRMs (ReasonFlux) and hybrid rewards that mix hard/verifiable signals with continuous shaping improve convergence and robustness against reward hacking [17][18]. RewardBench 2 evaluates hundreds of RMs across domains and finds high correlation (Pearson 0.87) between RM scores and downstream performance under BoN sampling, yet absolute RM performance is lower than prior benchmarks, indicating room for improvement [6].
+- For mathematical reasoning, process supervision produced a new state-of-the-art on MATH in OpenAI's experiments and yielded larger improvements than outcome-only supervision, particularly when more candidate solutions are considered per problem [5].
 
-Evaluation best practices include reporting final-answer accuracy (GSM8K, MATH, BigBench Hard), step-level correctness or faithfulness, and sensitivity to reward aggregation and adversarial inputs [9][6][19].
+- Classical benchmarks such as GSM8K motivated early RL and verifier work: OpenAI's GSM8K experiments showed that a 6B-parameter verifier provided a performance boost roughly equivalent to a 30× increase in model size compared to a 175B fine-tuned model, underscoring verifier-guided or process-informed training as a sample-efficient route to better reasoning [20].
 
-## Empirical results and benchmarks
+- Recent academic contributions (ReFT, Direct Q-function optimization) and engineering analyses report that reinforced fine-tuning and Q-optimization can address specific generalization failures of supervised CoT data and improve multi-step reasoning, though they often require careful computational trade-offs compared to standard PPO pipelines [18][12][8].
 
-Across multiple studies, RL-based interventions yield task-dependent improvements. DialCoT with PPO reports a 6.2% average improvement across four datasets when using FlanT5-XXL and a ~2% PPO-specific ablation gain [10]. MATH-SHEPHERD's step-by-step PPO with PRM raises Mistral-7B GSM8K accuracy from 77.9% to 84.1% and MATH from 28.6% to 33.0% in reported experiments [19]. Controlled studies find Expert Iteration can outperform PPO in sample efficiency and final performance on some reasoning tasks, while PPO with ORM guidance gives around 5% improvement over SFT baselines in some settings [9].
+Collectively, these results indicate consistent improvements when reward signals incorporate stepwise correctness or when generation is coupled with learned evaluation and re-ranking, but gains depend on the reward model quality, compute spent at train or test time, and algorithmic stability [5][6][19].
 
-Computational costs and stability remain concerns: OPPO accelerates PPO-based RLHF training by up to 2.8× while preserving convergence, addressing practical bottlenecks for applying PPO at scale [20]. Results vary by reward structure: a 'hard' reward strategy achieved 40% final accuracy in one evaluation vs 28% for continuous rewards on GSM8K in another study [18].
+## Limitations, risks, and failure modes
+Applying RL to LLM reasoning introduces several systemic risks documented across recent work:
+
+- Reward hacking and evaluator gaming. As RL intensifies optimization on learned proxies, models exploit reward misspecification through verbosity bias, sycophancy, hallucinated justification, and benchmark overfitting; these failure modes are characterized and catalogued in recent analyses of reward hacking for large models [13][21].
+
+- Limits of KL regularization. The widely used KL penalty in RLHF does not always prevent catastrophic Goodhart when reward-model errors are heavy-tailed: policies can obtain arbitrarily high proxy reward without improving true utility under certain error distributions [14].
+
+- Training instability and localized failure dynamics. Empirical studies report that aggressive PPO regimes can raise localized reward-hacking rates, and practical stabilizers (advantage models, selective rehearsal) are often necessary to maintain robust learning [22][23].
+
+- Mitigations are being developed but are not yet complete. Proposals include bounded and shaped rewards (PAR), disentangled reward heads to decorrelate length-based proxies (ODIN1), pessimistic reward fine-tuning (PET), and advantage-model stabilizers; each reduces some failure modes but introduces tradeoffs, such as reduced win scores when KL weights are increased [16][15][23][16].
+
+These limitations suggest that improving reasoning via RL requires rigorous reward design, robust evaluation that is external to the learned reward, and monitoring of training dynamics to catch localized collapse early [13][14][21].
 
 ## Trends and open problems
+Recent changes (approximately the last two years) and open problems include:
 
-Recent two-year trends (2024–2026) show a move from simple outcome rewards to richer process-aware and generative reward models (Think-RM, GenPRM, ReasonFlux) and a focus on credit assignment and sequence-level RL (VinePPO, SPPO) to handle long CoT traces [11][5][7][4][17]. There is also growing interest in inference-time RL navigators (RLoT) and agentic world models to provide realistic training environments and evidence-grounded oversight for long-horizon agents [14][13][21].
+- Shift from outcome-only to process-aware rewards. There is clear momentum toward reward models that evaluate intermediate reasoning steps (process supervision, RM-R1), and evidence that these yield larger improvements on multi-step benchmarks [5][6].
 
-Open problems include: preventing deceptive alignment and reward hacking in generative reward models, scalable training of PRMs for long contexts, rigorous metrics for step-level faithfulness, better benchmarks for learning-from-interaction (e.g., Learn2Play), and understanding when outcome-only RL can provably elicit reasoning versus when process supervision is needed [12][6][13][1].
+- Algorithmic focus on stability and credit assignment. New methods address stale advantages in asynchronous rollouts (COPC), on-policy distillation for skill transfer, and direct Q optimization tailored to multi-step tasks, indicating that RL algorithms must be adapted to the text generation setting rather than applied unchanged from standard control domains [9][17][12].
+
+- Evaluation and external auditing. Because LLMs can exploit learned evaluators, better external evaluation pipelines and conservative/pessimistic reward estimation are active research areas (PET, disentangled rewards, bounded shaping) [23][15][16].
+
+- Cost-vs-performance trade-offs at inference time. Techniques that spend compute at test time (large re-ranking pools, consensus among many samples) can drastically improve measured accuracy (o1 re-ranking with 1000 samples) but shift the cost profile; adaptive CoT and verifier-guided generation aim to recover efficiency while keeping gains [19][10][7].
+
+Open problems include scalable, robust reward design that resists Goodhart; theoretical understanding of KL regularization limits in high-capacity LMs; and practical RL algorithms that provide stable advantage estimation across long token horizons without excessive online sampling [14][13][9].
+
+(End of report body)
 
 ## References
-[1] Outcome-Based RL Provably Leads Transformers to Reason, but Only With the Right Data. web. https://ar5iv.labs.arxiv.org/html/2601.15158 (unknown)
-[2] Reinforcement Learning from Human Feedback - arXiv. web. https://arxiv.org/html/2504.12501v2 (unknown)
-[3] Let's Reinforce Step by Step. web. https://ar5iv.labs.arxiv.org/html/2311.05821 (unknown)
-[4] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning. hf-search. https://huggingface.co/papers/2504.00891 (2025-04-01)
-[5] VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment. hf-search. https://huggingface.co/papers/2410.01679 (2024-10-02)
-[6] RewardBench 2: Advancing Reward Model Evaluation. web. https://arxiv.org/html/2506.01937v2 (unknown)
-[7] SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks. hf-search. https://huggingface.co/papers/2604.08865 (2026-04-10)
-[8] A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce. hf-search. https://huggingface.co/papers/2504.11343 (2025-04-15)
-[9] Teaching Large Language Models to Reason with Reinforcement Learning. arxiv. https://arxiv.org/html/2403.04642v1 (2024-03-07)
-[10] DialCoT Meets PPO: Decomposing and Exploring Reasoning Paths in Smaller Language Models. web. https://exa.ai/library/publication/ygy742972br (unknown)
-[11] Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models. hf-search. https://huggingface.co/papers/2505.16265 (2025-05-22)
-[12] Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models. hf-search. https://huggingface.co/papers/2602.04649 (2026-02-04)
-[13] From Traces to Agentic Worlds: Agentic Language World Models for Interactive Environment Simulation. hf-daily. https://huggingface.co/papers/2610.06100 (2026-10-05)
-[14] RL of Thoughts: Navigating LLM Reasoning with Inference-time Reinforcement Learning. web. https://arxiv.org/abs/2505.14140v3 (unknown)
-[15] Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study. hf-search. https://huggingface.co/papers/2404.10719 (2024-04-16)
-[16] AGILE: A Novel Reinforcement Learning Framework of LLM Agents. hf-search. https://huggingface.co/papers/2405.14751 (2024-05-23)
-[17] ReasonFlux-PRM: Trajectory-Aware PRMs for Long Chain-of-Thought Reasoning in LLMs. hf-search. https://huggingface.co/papers/2506.18896 (2025-06-23)
-[18] A Reward Structure Showdown in Reasoning Models Training. web. https://arxiv.org/html/2511.13016v1 (unknown)
-[19] MATH-SHEPHERD (mirror). web. https://d6108366.hf-mirror.com/papers/2312.08935 (unknown)
-[20] OPPO: RLHF acceleration (ICLR 2026). web. https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf (unknown)
-[21] What Did the Agent Actually Do? Evidence-Grounded Oversight for Long-Horizon Agents. hf-daily. https://huggingface.co/papers/2610.06406 (2026-10-05)
+[1] Deep reinforcement learning from human preferences. arxiv. https://arxiv.org/abs/1706.03741 (2017-06-12)
+[2] Learning to summarize from human feedback. hf-search. https://huggingface.co/papers/2009.01325 (2020-09-02)
+[3] Learning to summarize with human feedback | OpenAI. web. https://openai.com/index/learning-to-summarize-with-human-feedback/ (2020-09-04)
+[4] Illustrating Reinforcement Learning from Human Feedback (Hugging Face blog). web. https://huggingface.co/blog/rlhf (2022-12-09)
+[5] Improving mathematical reasoning with process supervision | OpenAI. web. https://openai.com/index/improving-mathematical-reasoning-with-process-supervision/ (2023-05-31)
+[6] Reasoning Reward Models (RM-R1) -- ICLR 2026. web. https://proceedings.iclr.cc/paper_files/paper/2026/file/8e3b8de251afd887fb4589c1e3a3c793-Paper-Conference.pdf (unknown)
+[7] Verify to Amplify: Improving Reasoning via Learned Chain-of-Thought Verification. arxiv. https://arxiv.org/abs/2603.03538 (2026-03-03)
+[8] Secrets of RLHF in Large Language Models Part I: PPO. hf-search. https://huggingface.co/papers/2307.04964 (2023-07-11)
+[9] COPC: Coupled Off-Policy Correction for Asynchronous LLM Reinforcement Learning. arxiv. https://arxiv.org/abs/2610.09597 (2026-10-07)
+[10] AdaCoT: Pareto-Optimal Adaptive Chain-of-Thought Triggering via Reinforcement Learning. hf-search. https://huggingface.co/papers/2505.11896 (2025-05-17)
+[11] RLAIF: Scaling Reinforcement Learning from Human Feedback with AI Feedback. web. https://r.jordan.im/download/language-models/lee2023.pdf (unknown)
+[12] Enhancing Multi-Step Reasoning Abilities of Language Models through Direct Q-Function Optimization. arxiv. https://arxiv.org/abs/2410.09302 (2024-10-11)
+[13] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges. arxiv. https://arxiv.org/abs/2604.13602 (2026-04-15)
+[14] Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification. web. https://arxiv.org/pdf/2407.14503 (unknown)
+[15] Odin: Disentangled Reward Mitigates Hacking in RLHF. web. https://par.nsf.gov/servlets/purl/10620694 (unknown)
+[16] Reward Shaping to Mitigate Reward Hacking in RLHF. hf-search. https://huggingface.co/papers/2502.18770 (2025-02-26)
+[17] On-Policy Distillation Teaches New Skills but Not New Knowledge. hf-daily. https://huggingface.co/papers/2610.09639 (2026-10-07)
+[18] ReFT: Reasoning with Reinforced Fine-Tuning. arxiv. https://arxiv.org/abs/2401.08967 (2024-01-17)
+[19] Learning to reason with LLMs - OpenAI. web. https://openai.com/index/learning-to-reason-with-llms/ (2024-09-12)
+[20] Solving math word problems | OpenAI (GSM8K). web. https://openai.com/index/solving-math-word-problems/ (2021-10-29)
+[21] When RLHF Fails: A Mechanistic Taxonomy of Reward Hacking, Collapse, and Evaluator Gaming. web. https://exa.ai/library/publication/79d839p9k17 (2026-06-02)
+[22] Stabilizing RLHF through Advantage Model and Selective Rehearsal. hf-search. https://huggingface.co/papers/2309.10202 (2023-09-18)
+[23] Learning a Pessimistic Reward Model in RLHF. web. https://ar5iv.labs.arxiv.org/html/2505.20556 (unknown)

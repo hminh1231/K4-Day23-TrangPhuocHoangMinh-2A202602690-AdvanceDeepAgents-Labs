@@ -1,170 +1,186 @@
 [
   {
     "n": 1,
-    "id": "https://ar5iv.labs.arxiv.org/html/2601.15158",
-    "url": "https://ar5iv.labs.arxiv.org/html/2601.15158",
-    "title": "Outcome-Based RL Provably Leads Transformers to Reason, but Only With the Right Data",
-    "date": "unknown",
-    "source": "web"
+    "id": "1706.03741",
+    "url": "https://arxiv.org/abs/1706.03741",
+    "title": "Deep reinforcement learning from human preferences",
+    "date": "2017-06-12",
+    "source": "arxiv"
   },
   {
     "n": 2,
-    "id": "https://arxiv.org/html/2504.12501v2",
-    "url": "https://arxiv.org/html/2504.12501v2",
-    "title": "Reinforcement Learning from Human Feedback - arXiv",
-    "date": "unknown",
-    "source": "web"
+    "id": "2009.01325",
+    "url": "https://huggingface.co/papers/2009.01325",
+    "title": "Learning to summarize from human feedback",
+    "date": "2020-09-02",
+    "source": "hf-search"
   },
   {
     "n": 3,
-    "id": "https://ar5iv.labs.arxiv.org/html/2311.05821",
-    "url": "https://ar5iv.labs.arxiv.org/html/2311.05821",
-    "title": "Let's Reinforce Step by Step",
-    "date": "unknown",
+    "id": "https://openai.com/index/learning-to-summarize-with-human-feedback/",
+    "url": "https://openai.com/index/learning-to-summarize-with-human-feedback/",
+    "title": "Learning to summarize with human feedback | OpenAI",
+    "date": "2020-09-04",
     "source": "web"
   },
   {
     "n": 4,
-    "id": "2504.00891",
-    "url": "https://huggingface.co/papers/2504.00891",
-    "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
-    "date": "2025-04-01",
-    "source": "hf-search"
+    "id": "https://huggingface.co/blog/rlhf",
+    "url": "https://huggingface.co/blog/rlhf",
+    "title": "Illustrating Reinforcement Learning from Human Feedback (Hugging Face blog)",
+    "date": "2022-12-09",
+    "source": "web"
   },
   {
     "n": 5,
-    "id": "2410.01679",
-    "url": "https://huggingface.co/papers/2410.01679",
-    "title": "VinePPO: Unlocking RL Potential For LLM Reasoning Through Refined Credit Assignment",
-    "date": "2024-10-02",
-    "source": "hf-search"
+    "id": "https://openai.com/index/improving-mathematical-reasoning-with-process-supervision/",
+    "url": "https://openai.com/index/improving-mathematical-reasoning-with-process-supervision/",
+    "title": "Improving mathematical reasoning with process supervision | OpenAI",
+    "date": "2023-05-31",
+    "source": "web"
   },
   {
     "n": 6,
-    "id": "https://arxiv.org/html/2506.01937v2",
-    "url": "https://arxiv.org/html/2506.01937v2",
-    "title": "RewardBench 2: Advancing Reward Model Evaluation",
+    "id": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8e3b8de251afd887fb4589c1e3a3c793-Paper-Conference.pdf",
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8e3b8de251afd887fb4589c1e3a3c793-Paper-Conference.pdf",
+    "title": "Reasoning Reward Models (RM-R1) -- ICLR 2026",
     "date": "unknown",
     "source": "web"
   },
   {
     "n": 7,
-    "id": "2604.08865",
-    "url": "https://huggingface.co/papers/2604.08865",
-    "title": "SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks",
-    "date": "2026-04-10",
-    "source": "hf-search"
+    "id": "2603.03538",
+    "url": "https://arxiv.org/abs/2603.03538",
+    "title": "Verify to Amplify: Improving Reasoning via Learned Chain-of-Thought Verification",
+    "date": "2026-03-03",
+    "source": "arxiv"
   },
   {
     "n": 8,
-    "id": "2504.11343",
-    "url": "https://huggingface.co/papers/2504.11343",
-    "title": "A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce",
-    "date": "2025-04-15",
+    "id": "2307.04964",
+    "url": "https://huggingface.co/papers/2307.04964",
+    "title": "Secrets of RLHF in Large Language Models Part I: PPO",
+    "date": "2023-07-11",
     "source": "hf-search"
   },
   {
     "n": 9,
-    "id": "2403.04642",
-    "url": "https://arxiv.org/html/2403.04642v1",
-    "title": "Teaching Large Language Models to Reason with Reinforcement Learning",
-    "date": "2024-03-07",
+    "id": "2610.09597",
+    "url": "https://arxiv.org/abs/2610.09597",
+    "title": "COPC: Coupled Off-Policy Correction for Asynchronous LLM Reinforcement Learning",
+    "date": "2026-10-07",
     "source": "arxiv"
   },
   {
     "n": 10,
-    "id": "https://exa.ai/library/publication/ygy742972br",
-    "url": "https://exa.ai/library/publication/ygy742972br",
-    "title": "DialCoT Meets PPO: Decomposing and Exploring Reasoning Paths in Smaller Language Models",
+    "id": "2505.11896",
+    "url": "https://huggingface.co/papers/2505.11896",
+    "title": "AdaCoT: Pareto-Optimal Adaptive Chain-of-Thought Triggering via Reinforcement Learning",
+    "date": "2025-05-17",
+    "source": "hf-search"
+  },
+  {
+    "n": 11,
+    "id": "https://r.jordan.im/download/language-models/lee2023.pdf",
+    "url": "https://r.jordan.im/download/language-models/lee2023.pdf",
+    "title": "RLAIF: Scaling Reinforcement Learning from Human Feedback with AI Feedback",
     "date": "unknown",
     "source": "web"
   },
   {
-    "n": 11,
-    "id": "2505.16265",
-    "url": "https://huggingface.co/papers/2505.16265",
-    "title": "Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models",
-    "date": "2025-05-22",
-    "source": "hf-search"
-  },
-  {
     "n": 12,
-    "id": "2602.04649",
-    "url": "https://huggingface.co/papers/2602.04649",
-    "title": "Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models",
-    "date": "2026-02-04",
-    "source": "hf-search"
+    "id": "2410.09302",
+    "url": "https://arxiv.org/abs/2410.09302",
+    "title": "Enhancing Multi-Step Reasoning Abilities of Language Models through Direct Q-Function Optimization",
+    "date": "2024-10-11",
+    "source": "arxiv"
   },
   {
     "n": 13,
-    "id": "2610.06100",
-    "url": "https://huggingface.co/papers/2610.06100",
-    "title": "From Traces to Agentic Worlds: Agentic Language World Models for Interactive Environment Simulation",
-    "date": "2026-10-05",
-    "source": "hf-daily"
+    "id": "2604.13602",
+    "url": "https://arxiv.org/abs/2604.13602",
+    "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+    "date": "2026-04-15",
+    "source": "arxiv"
   },
   {
     "n": 14,
-    "id": "2505.14140v3",
-    "url": "https://arxiv.org/abs/2505.14140v3",
-    "title": "RL of Thoughts: Navigating LLM Reasoning with Inference-time Reinforcement Learning",
+    "id": "https://arxiv.org/pdf/2407.14503",
+    "url": "https://arxiv.org/pdf/2407.14503",
+    "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification",
     "date": "unknown",
     "source": "web"
   },
   {
     "n": 15,
-    "id": "2404.10719",
-    "url": "https://huggingface.co/papers/2404.10719",
-    "title": "Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study",
-    "date": "2024-04-16",
-    "source": "hf-search"
+    "id": "https://par.nsf.gov/servlets/purl/10620694",
+    "url": "https://par.nsf.gov/servlets/purl/10620694",
+    "title": "Odin: Disentangled Reward Mitigates Hacking in RLHF",
+    "date": "unknown",
+    "source": "web"
   },
   {
     "n": 16,
-    "id": "2405.14751",
-    "url": "https://huggingface.co/papers/2405.14751",
-    "title": "AGILE: A Novel Reinforcement Learning Framework of LLM Agents",
-    "date": "2024-05-23",
+    "id": "2502.18770",
+    "url": "https://huggingface.co/papers/2502.18770",
+    "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+    "date": "2025-02-26",
     "source": "hf-search"
   },
   {
     "n": 17,
-    "id": "2506.18896",
-    "url": "https://huggingface.co/papers/2506.18896",
-    "title": "ReasonFlux-PRM: Trajectory-Aware PRMs for Long Chain-of-Thought Reasoning in LLMs",
-    "date": "2025-06-23",
-    "source": "hf-search"
+    "id": "2610.09639",
+    "url": "https://huggingface.co/papers/2610.09639",
+    "title": "On-Policy Distillation Teaches New Skills but Not New Knowledge",
+    "date": "2026-10-07",
+    "source": "hf-daily"
   },
   {
     "n": 18,
-    "id": "https://arxiv.org/html/2511.13016v1",
-    "url": "https://arxiv.org/html/2511.13016v1",
-    "title": "A Reward Structure Showdown in Reasoning Models Training",
-    "date": "unknown",
-    "source": "web"
+    "id": "2401.08967",
+    "url": "https://arxiv.org/abs/2401.08967",
+    "title": "ReFT: Reasoning with Reinforced Fine-Tuning",
+    "date": "2024-01-17",
+    "source": "arxiv"
   },
   {
     "n": 19,
-    "id": "https://d6108366.hf-mirror.com/papers/2312.08935",
-    "url": "https://d6108366.hf-mirror.com/papers/2312.08935",
-    "title": "MATH-SHEPHERD (mirror)",
-    "date": "unknown",
+    "id": "https://openai.com/index/learning-to-reason-with-llms/",
+    "url": "https://openai.com/index/learning-to-reason-with-llms/",
+    "title": "Learning to reason with LLMs - OpenAI",
+    "date": "2024-09-12",
     "source": "web"
   },
   {
     "n": 20,
-    "id": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf",
-    "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/6b4fd4a4607f57fe65b5e276bdb17ed1-Paper-Conference.pdf",
-    "title": "OPPO: RLHF acceleration (ICLR 2026)",
-    "date": "unknown",
+    "id": "https://openai.com/index/solving-math-word-problems/",
+    "url": "https://openai.com/index/solving-math-word-problems/",
+    "title": "Solving math word problems | OpenAI (GSM8K)",
+    "date": "2021-10-29",
     "source": "web"
   },
   {
     "n": 21,
-    "id": "2610.06406",
-    "url": "https://huggingface.co/papers/2610.06406",
-    "title": "What Did the Agent Actually Do? Evidence-Grounded Oversight for Long-Horizon Agents",
-    "date": "2026-10-05",
-    "source": "hf-daily"
+    "id": "https://exa.ai/library/publication/79d839p9k17",
+    "url": "https://exa.ai/library/publication/79d839p9k17",
+    "title": "When RLHF Fails: A Mechanistic Taxonomy of Reward Hacking, Collapse, and Evaluator Gaming",
+    "date": "2026-06-02",
+    "source": "web"
+  },
+  {
+    "n": 22,
+    "id": "2309.10202",
+    "url": "https://huggingface.co/papers/2309.10202",
+    "title": "Stabilizing RLHF through Advantage Model and Selective Rehearsal",
+    "date": "2023-09-18",
+    "source": "hf-search"
+  },
+  {
+    "n": 23,
+    "id": "https://ar5iv.labs.arxiv.org/html/2505.20556",
+    "url": "https://ar5iv.labs.arxiv.org/html/2505.20556",
+    "title": "Learning a Pessimistic Reward Model in RLHF",
+    "date": "unknown",
+    "source": "web"
   }
 ]

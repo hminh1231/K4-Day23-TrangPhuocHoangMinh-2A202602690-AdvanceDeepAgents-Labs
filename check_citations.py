@@ -17,6 +17,11 @@ _CODE = re.compile(r"(```.*?```|`[^`\n]*`)", re.DOTALL)
 _REF_HEADING = re.compile(r"(?m)^##[ \t]+References[ \t]*$")
 _REF_LINE = re.compile(r"^\s*\[(\d+)\]")
 _URL = re.compile(r"https?://[^\s<>()\[\]\"']+")
+_FAMILY_URL = {   # source family -> (url pattern, expected form); a source found through a web tool is "web"
+    "arxiv": (re.compile(r"https://arxiv\.org/abs/[^\s/?#]+"), "https://arxiv.org/abs/<id>"),
+    "hf-daily": (re.compile(r"https://huggingface\.co/papers/[^\s/?#]+"), "https://huggingface.co/papers/<id>"),
+    "hf-search": (re.compile(r"https://huggingface\.co/papers/[^\s/?#]+"), "https://huggingface.co/papers/<id>"),
+}
 
 
 def _group_numbers(group):
@@ -63,6 +68,10 @@ def check(report_text, sources):
         if not isinstance(url, str) or not url.startswith(("http://", "https://")):
             problems.append(f"source [{n}]: url {url!r} does not start with http:// or https://")
             continue
+        family = _FAMILY_URL.get(entry.get("source"))
+        if family and not family[0].fullmatch(url):
+            problems.append(f"source [{n}]: family {entry.get('source')!r} needs url {family[1]}, got {url} "
+                            "(fix the url, or set source to 'web' if a web tool returned it)")
         if url in seen_urls:
             problems.append(f"source [{n}]: url {url} duplicates source [{seen_urls[url]}]")
         else:

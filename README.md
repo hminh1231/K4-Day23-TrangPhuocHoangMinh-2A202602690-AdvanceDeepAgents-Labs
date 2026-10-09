@@ -15,7 +15,7 @@ python research.py "survey about world model"
 python self_check.py        # kiểm tra đủ 5 báo cáo, trích dẫn và không lộ khóa
 ```
 
-Với `SANDBOX=docker`, Docker Desktop phải đang chạy. Mỗi chủ đề mất khoảng 20-35 phút.
+Với `SANDBOX=docker`, Docker Desktop phải đang chạy. Mỗi chủ đề mất khoảng 8-35 phút.
 
 **Cách đọc `reports/`**: mỗi chủ đề có ba tệp cùng tên `<slug>`:
 
@@ -30,7 +30,7 @@ Kiểm tra lại một báo cáo: `python check_citations.py reports/<slug>.md r
 | Chủ đề | Nguồn | Gọi subagent | Họ nguồn | Thời gian |
 |---|---|---|---|---|
 | survey about world model | 17 | 7 | hf-daily, hf-search, web | ~22 phút |
-| survey about reinforcement learning for LLM reasoning | 21 | 5 | arxiv, hf-daily, hf-search, web | ~22 phút |
+| survey about reinforcement learning for LLM reasoning | 23 | 6 | arxiv, hf-daily, hf-search, web | ~8 phút |
 | survey about LLM agents and tool use | 23 | 5 | hf-daily, hf-search, web | ~27 phút |
 | survey about video and multimodal generation | 22 | 6 | hf-daily, hf-search, web | ~33 phút |
 | survey about efficient inference and small language models | 19 | 4 | arxiv, hf-search, web | ~22 phút |
